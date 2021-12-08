@@ -1,0 +1,85 @@
+# 상권대분류명 별로 상호명이 많은 구 10개 조회 후 
+# 각 구별로 점수를 매겨서 점수가 높은 10개의 구 조회
+import pandas as pd
+from pandas import Series, DataFrame
+df = pd.read_csv('big_sector_sigungu_top10.csv', sep=",", encoding='UTF8')
+sigungu = df['SIGUNGU_NAME'].tolist()
+sigungu = set(sigungu)
+sigungu = list(sigungu)
+
+score = [0] * 20
+
+for i in range(0, len(df)):
+    for j in range(0, len(sigungu)):
+        if df['SIGUNGU_NAME'][i] == sigungu[j]:
+            score[j] += (10 - df['RANK'][i])
+            
+result = { 'sigungu_name': sigungu,
+              'score': score}
+result_df = DataFrame(result)
+result_df = result_df.sort_values('score', ascending=False)
+print(result_df)
+
+# 상권대분류명 별로 상호명이 많은 동 10개 조회
+# 각 동별로 점수를 매겨서 점수가 높은 10개의 구 조회
+import pandas as pd
+from pandas import Series, DataFrame
+df = pd.read_csv('big_sector_hengjungdong_top10.csv', sep=",", encoding='UTF8')
+hengjungdong = df['HENGJUNGDONG_NAME'].tolist()
+hengjungdong = set(hengjungdong)
+hengjungdong = list(hengjungdong)
+
+score = [0] * 38
+
+for i in range(0, len(df)):
+    for j in range(0, len(hengjungdong)):
+        if df['HENGJUNGDONG_NAME'][i] == hengjungdong[j]:
+            score[j] += (10 - df['RANK'][i])
+            
+result = { 'big_sector_hengjungdong_top10_name': hengjungdong,
+              'score': score}
+result_df = DataFrame(result)
+result_df = result_df.sort_values('score', ascending=False)
+print(result_df)
+
+# 상권중분류명 별로 상호명이 많은 구 10개 조회
+import pandas as pd
+from pandas import Series, DataFrame
+df = pd.read_csv('mid_sector_sigungu_top10.csv', sep=",", encoding='UTF8')
+sigungu = df['SIGUNGU_NAME'].tolist()
+sigungu = set(sigungu)
+sigungu = list(sigungu)
+
+score = [0] * 25
+
+for i in range(0, len(df)):
+    for j in range(0, len(sigungu)):
+        if df['SIGUNGU_NAME'][i] == sigungu[j]:
+            score[j] += (10 - df['RANK'][i])
+            
+result = { 'sigungu_name': sigungu,
+              'score': score}
+result_df = DataFrame(result)
+result_df = result_df.sort_values('score', ascending=False)
+print(result_df)
+
+# 상권중분류명 별로 상호명이 많은 동 10개 조회
+import pandas as pd
+from pandas import Series, DataFrame
+df = pd.read_csv('big_sector_hengjungdong_top10.csv', sep=",", encoding='UTF8')
+hengjungdong = df['HENGJUNGDONG_NAME'].tolist()
+hengjungdong = set(hengjungdong)
+hengjungdong = list(hengjungdong)
+
+score = [0] * 38
+
+for i in range(0, len(df)):
+    for j in range(0, len(hengjungdong)):
+        if df['HENGJUNGDONG_NAME'][i] == hengjungdong[j]:
+            score[j] += (10 - df['RANK'][i])
+            
+result = { 'big_sector_hengjungdong_top10_name': hengjungdong,
+              'score': score}
+result_df = DataFrame(result)
+result_df = result_df.sort_values('score', ascending=False)
+print(result_df)
